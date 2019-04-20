@@ -90,6 +90,10 @@ public class PlayerManager : MonoBehaviour
 
     public void AddAICardToBattle(Transform tranform)
     {
+        if(cardsInHand.Count == 0)  //end game
+        {
+            return;
+        }
         int aiCardRandrom = Random.Range(0, cardsInHand.Count);
         GameObject card = cardsInHand[aiCardRandrom];
 

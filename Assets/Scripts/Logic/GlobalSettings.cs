@@ -6,7 +6,7 @@ public class GlobalSettings : SingletonAsComponent<GlobalSettings>
 {
     public GameObject GameLogicManager;
     public int MaxPlayerCard = 5;
-    public int DefaultPlayerScore = 20;
+    public int DefaultPlayerScore = 0;
 
     public static GlobalSettings Instance
     {

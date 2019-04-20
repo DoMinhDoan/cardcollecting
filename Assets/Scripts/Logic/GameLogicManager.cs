@@ -69,8 +69,8 @@ public class GameLogicManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+
+    }    
 
     void UpdateListCardPostion()
     {
@@ -102,11 +102,11 @@ public class GameLogicManager : MonoBehaviour
         if(PlayerManager.GetComponent<PlayerManager>().NumberCard() == GlobalSettings.Instance.MaxPlayerCard)
         {
             TransferRestCardToAI();
-            StartCoroutine(ProcessAIFirst());
+            StartCoroutine(ProcessAIToBattle());
         }
     }
 
-    IEnumerator ProcessAIFirst()
+    IEnumerator ProcessAIToBattle()
     {
         yield return new WaitForSeconds(2.5f);
         MoveAICardToBattlePoint();  //AI first
@@ -124,7 +124,7 @@ public class GameLogicManager : MonoBehaviour
         UpdateListCardPostion();
         UpdateAiCardPostion();
 
-        currentState = GameState.BATTLE;        
+        currentState = GameState.BATTLE;
     }
 
     public void UpdatePlayerCardPostion()
@@ -175,6 +175,8 @@ public class GameLogicManager : MonoBehaviour
             PlayerManager.GetComponent<PlayerManager>().UpdateBattleHeathCardInformation(playerHealthValue);
 
             currentState = GameState.BATTLE;
+
+            StartCoroutine(ProcessAIToBattle());
         }
         else if (aiHealthValue > 0 && aiHealthValue > playerHealthValue)
         {
@@ -190,6 +192,7 @@ public class GameLogicManager : MonoBehaviour
             AIManager.GetComponent<PlayerManager>().DestroyBattleCard();
 
             currentState = GameState.BATTLE;
+            StartCoroutine(ProcessAIToBattle());
         }
     }
 
