@@ -12,10 +12,10 @@ public class LocalSaveManager : SingletonAsComponent<LocalSaveManager>
         set { _Instance = value; }
     }
 
+    GameSave save = new GameSave();
+
     public void SaveGame()
     {
-        GameSave save = CreateSaveGameObject();
-
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
         bf.Serialize(file, save);
@@ -24,12 +24,19 @@ public class LocalSaveManager : SingletonAsComponent<LocalSaveManager>
         Debug.Log("Game Saved");
     }
 
+    public void UpdateSaveGame(int score)
+    {
+        save.score = score;
+    }
+
     private GameSave CreateSaveGameObject()
     {
-        GameSave save = new GameSave();
+        save.score = 0;
+        return save;
+    }
 
-        save.hits = 0;
-
+    public GameSave GetGameSave()
+    {
         return save;
     }
 
@@ -39,7 +46,10 @@ public class LocalSaveManager : SingletonAsComponent<LocalSaveManager>
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
-            GameSave save = (GameSave)bf.Deserialize(file);
+            GameSave gameSave = (GameSave)bf.Deserialize(file);
+
+            save = gameSave;
+
             file.Close();
 
             Debug.Log("Game Loaded");

@@ -5,5 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class GameSave
 {
-    public int hits = 0;
+    public int score = 0;
 }

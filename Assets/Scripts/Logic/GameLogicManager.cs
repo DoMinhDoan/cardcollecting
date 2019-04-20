@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameState
 {
@@ -16,10 +17,14 @@ public class GameLogicManager : MonoBehaviour
     public GameObject CreatureCardPrefab;
 
     public GameObject PlayerManager;
-    public GameObject AIManager;
+    public GameObject AIManager;    
 
     public Transform PlayerBattlePoint;
     public Transform AIBattlePoint;
+
+    public Text ScoreText;
+    public GameObject GameOver;
+    public Text BattleResult;
 
     [SerializeField]
     private List<GameObject> allCardsObject = new List<GameObject>();
@@ -40,6 +45,8 @@ public class GameLogicManager : MonoBehaviour
 
     private void Awake()
     {
+        LocalSaveManager.Instance.LoadGame();
+        ScoreText.text = LocalSaveManager.Instance.GetGameSave().score.ToString();
         allCardsAsset.Shuffle();
     }
 
@@ -172,6 +179,11 @@ public class GameLogicManager : MonoBehaviour
         {
             AIManager.GetComponent<PlayerManager>().DestroyBattleCard();
             PlayerManager.GetComponent<PlayerManager>().AddScore(1);
+
+            ScoreText.text = (LocalSaveManager.Instance.GetGameSave().score + PlayerManager.GetComponent<PlayerManager>().CurrentScore).ToString();
+
+            //LocalSaveManager.Instance.UpdateSaveGame(PlayerManager.GetComponent<PlayerManager>().CurrentScore);
+
             PlayerManager.GetComponent<PlayerManager>().UpdateBattleHeathCardInformation(playerHealthValue);
 
             currentState = GameState.BATTLE;
@@ -201,6 +213,27 @@ public class GameLogicManager : MonoBehaviour
 
             currentState = GameState.BATTLE;
             StartCoroutine(UpdateFighting());
+        }
+
+        if(AIManager.GetComponent<PlayerManager>().NumberCard() == 0 || PlayerManager.GetComponent<PlayerManager>().NumberCard() == 0)
+        {
+            GameOver.SetActive(true);
+            LocalSaveManager.Instance.UpdateSaveGame(LocalSaveManager.Instance.GetGameSave().score + PlayerManager.GetComponent<PlayerManager>().CurrentScore);
+            LocalSaveManager.Instance.SaveGame();
+
+            if (PlayerManager.GetComponent<PlayerManager>().CurrentScore > AIManager.GetComponent<PlayerManager>().CurrentScore)
+            {
+                BattleResult.text = "YOU WIN";
+            }
+            else if (PlayerManager.GetComponent<PlayerManager>().CurrentScore == AIManager.GetComponent<PlayerManager>().CurrentScore)
+            {
+                BattleResult.text = "Draw!";
+            }
+            else
+            {
+                BattleResult.text = "YOU LOSS";
+            }
+            
         }
     }
 

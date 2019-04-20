@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: f5beb07e98ac58b49abce26c5e94fb1c
+guid: a8283273a5adb85459caa6f10a8bdc50
 TextureImporter:
   fileIDToRecycleName:
-    21300000: frame_card_0
-    21300002: frame_card_1
+    21300000: score_0
+    21300002: score_1
+    21300004: score_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -97,33 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: frame_card_0
+      name: score_0
       rect:
         serializedVersion: 2
-        x: 284
-        y: 320
-        width: 400
-        height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e4bdf5b46a523440b4d6afef64fa63e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: frame_card_1
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 990
-        width: 1334
-        height: 484
+        x: 1
+        y: 0
+        width: 511
+        height: 511
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f251ee06c95dee4aad70a2b680db2b2
+      spriteID: f2a55ca7ff8cb534abfbcd89b386f1ea
       vertices: []
       indices: 
       edges: []
@@ -139,7 +120,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: db90d7be6c91b6f44b7ab5b6e06de741
+    spriteID: 08f88f760b5812a49a23ad7917a48234
     vertices: []
     indices: 
     edges: []
