@@ -56,7 +56,7 @@ public class GameLogicManager : MonoBehaviour
             }
             else
             {
-                cardsPositionXOffset += 1.5f;
+                cardsPositionXOffset += 1.2f;
             }
             GameObject card = GameObject.Instantiate(CreatureCardPrefab, new Vector3(cardsPositionX, 0f, 0f), Quaternion.Euler(new Vector3(0f, 0f, 0f))) as GameObject;
             card.GetComponent<CardManager>().UpdateCardInformation(allCardsAsset[i]);
@@ -193,6 +193,14 @@ public class GameLogicManager : MonoBehaviour
 
             currentState = GameState.BATTLE;
             StartCoroutine(ProcessAIToBattle());
+        }
+        else if (playerHealthValue > 0 && aiHealthValue > 0 && playerHealthValue == aiHealthValue)
+        {
+            AIManager.GetComponent<PlayerManager>().UpdateBattleHeathCardInformation(aiHealthValue);
+            PlayerManager.GetComponent<PlayerManager>().UpdateBattleHeathCardInformation(playerHealthValue);
+
+            currentState = GameState.BATTLE;
+            StartCoroutine(UpdateFighting());
         }
     }
 
