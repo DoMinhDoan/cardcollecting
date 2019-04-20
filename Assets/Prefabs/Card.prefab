@@ -233,6 +233,7 @@ MonoBehaviour:
   AttackText: {fileID: 4238238167551120996}
   CardGraphicImage: {fileID: 4238238168128078866}
   CardPreview: {fileID: 0}
+  GameLogicManager: {fileID: 0}
 --- !u!1 &6461638865035214190
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +917,7 @@ MonoBehaviour:
   AttackText: {fileID: 6461638865776345237}
   CardGraphicImage: {fileID: 6461638865211937507}
   CardPreview: {fileID: 4238238167971126771}
+  GameLogicManager: {fileID: 0}
 --- !u!1 &6461638865953572107
 GameObject:
   m_ObjectHideFlags: 0

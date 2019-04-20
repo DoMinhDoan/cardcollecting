@@ -8,13 +8,14 @@ public class PlayerManager : MonoBehaviour
     public List<CardAsset> cardsAsset = new List<CardAsset>();
     public GameObject CreatureCardPrefab;
 
+    [SerializeField]
     private List<GameObject> cardsInHand = new List<GameObject>();
     private List<float> cardsPositionX = new List<float> { 0, -3f, 3f, -6f, 6f };
 
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < cardsAsset.Count; i++)    
+        /*for(int i = 0; i < cardsAsset.Count; i++)    
         {
             GameObject card;
             if(isPlayer)
@@ -30,7 +31,7 @@ public class PlayerManager : MonoBehaviour
             card.GetComponent<CardManager>().UpdateCardInformantion(cardsAsset[i]);
 
             AddCard(card);
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -42,5 +43,37 @@ public class PlayerManager : MonoBehaviour
     public void AddCard(GameObject card)
     {
         cardsInHand.Add(card);
+    }
+
+    public int NumberCard()
+    {
+        return cardsInHand.Count;
+    }
+
+    public void UpdateCardPosition()
+    {
+        float cardsPositionXOffset = 0;
+        for (int i = 0; i < cardsInHand.Count; i++)
+        {
+            float cardsPositionX = cardsPositionXOffset;
+            if (i % 2 != 0)
+            {
+                cardsPositionX = -cardsPositionXOffset;
+            }
+            else
+            {
+                cardsPositionXOffset += 2f;
+            }
+
+            if (isPlayer)
+            {
+                cardsInHand[i].transform.localPosition = new Vector3(cardsPositionX, -3f, 0f);
+            }
+            else
+            {
+                cardsInHand[i].transform.localPosition = new Vector3(cardsPositionX, 5f, 0f);
+                cardsInHand[i].transform.localRotation = Quaternion.Euler(new Vector3(0f, -179f, 0f));
+            }
+        }
     }
 }

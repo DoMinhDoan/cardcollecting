@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
 {
+
     public Text NameText;
     public Text DescriptionText;
     public Text HealthText;
@@ -40,5 +41,12 @@ public class CardManager : MonoBehaviour
             }
         }
         
+    }
+
+    void OnMouseDown()
+    {
+        Debug.Log("OnMouseDown");
+        GlobalSettings.Instance.GameLogicManager.GetComponent<GameLogicManager>().AddCardToPlayer(this.gameObject);
+        GlobalSettings.Instance.GameLogicManager.GetComponent<GameLogicManager>().UpdatePlayerCardPostion();
     }
 }
