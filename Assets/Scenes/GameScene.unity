@@ -265,11 +265,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 1
   cardsAsset:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6ebb68b3e7832f3418ed8d794565d11a, type: 2}
+  - {fileID: 11400000, guid: e33930f1d3030d94287b2a235db7b124, type: 2}
+  - {fileID: 11400000, guid: db08abd79b4d0854993a492980c313e0, type: 2}
+  - {fileID: 11400000, guid: 239effabf09a0164fafbd0098e462e80, type: 2}
+  - {fileID: 11400000, guid: 746fa5aa62f281641b6753315717fea7, type: 2}
   CreatureCardPrefab: {fileID: 6461638865894361858, guid: f6ce633e44dea4d4998991139755082d,
     type: 3}
 --- !u!1 &534669902
@@ -421,8 +421,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4446496249830475250, guid: b76b8f697931fdf4eb1bead9392fc81e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b76b8f697931fdf4eb1bead9392fc81e, type: 3}
 --- !u!4 &577716327 stripped
 Transform:
@@ -512,7 +511,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  CreatureCardPrefab: {fileID: 6461638865894361858, guid: b76b8f697931fdf4eb1bead9392fc81e,
+  CreatureCardPrefab: {fileID: 6461638865894361858, guid: f6ce633e44dea4d4998991139755082d,
     type: 3}
 --- !u!1 &1330038913
 GameObject:

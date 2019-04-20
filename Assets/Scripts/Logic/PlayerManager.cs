@@ -24,7 +24,10 @@ public class PlayerManager : MonoBehaviour
             else
             {
                 card = GameObject.Instantiate(CreatureCardPrefab, new Vector3(cardsPositionX[i], 5f, 0f), Quaternion.Euler(new Vector3(0f, -179f, 0f))) as GameObject;
+                card.GetComponent<HoverPreview>().ThisPreviewEnabled = false;
             }
+
+            card.GetComponent<CardManager>().UpdateCardInformantion(cardsAsset[i]);
 
             AddCard(card);
         }

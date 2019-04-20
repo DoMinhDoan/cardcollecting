@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: Shadowboxer
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Shadowboxer
+  Description: Punching is its primary function. Also, its secondary function.
   CardImage: {fileID: 21300000, guid: 3493cb280cd8ffa4094f2137746f160e, type: 3}
   Health: 4
   Attack: 1

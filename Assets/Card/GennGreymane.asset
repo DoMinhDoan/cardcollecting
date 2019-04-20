@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: GennGreymane
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Genn Greymane
+  Description: "Ever since Sylvanas killed his son, he's dreamed of getting\u2026
+    even.\n"
   CardImage: {fileID: 21300000, guid: 81141fa1e8b225b478ac51f8bd58c721, type: 3}
   Health: 2
   Attack: 3

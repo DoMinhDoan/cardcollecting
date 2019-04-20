@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: Webspinner
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Webspinner
+  Description: 'Deathrattle: Add a random Beast card to your hand.'
   CardImage: {fileID: 21300000, guid: f26aae3395fba8d419674d351cebb127, type: 3}
   Health: 4
   Attack: 1

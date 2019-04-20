@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: AzalinaSoulthief
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Azalina Soulthief
+  Description: 'Battlecry: Replace your hand with a copy of your_opponent''s.'
   CardImage: {fileID: 21300000, guid: 644550a48455b9a4685be29661911d27, type: 3}
   Health: 6
   Attack: 13

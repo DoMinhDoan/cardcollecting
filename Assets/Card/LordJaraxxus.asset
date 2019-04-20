@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: LordJaraxxus
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Lord Jaraxxus
+  Description: 'Battlecry: Destroy your hero and replace it with Lord Jaraxxus.'
   CardImage: {fileID: 21300000, guid: d619113dc31f0af46a6017619e9674f9, type: 3}
   Health: 2
   Attack: 5

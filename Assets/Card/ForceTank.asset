@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: ForceTank
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Force Tank
+  Description: 'There is a factory in Tanaris for crafting force-tanks, but it only
+    ever made two, because of cost overruns.
+
+'
   CardImage: {fileID: 21300000, guid: b4c8015d2ec40f8449e858ec9a6d815b, type: 3}
   Health: 4
   Attack: 3

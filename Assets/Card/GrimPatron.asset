@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: GrimPatron
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Grim Patron
+  Description: Whenever this minion survives damage, summon another Grim Patron.
   CardImage: {fileID: 21300000, guid: 22cff6637241bde4f99f04b6e134fbc3, type: 3}
   Health: 7
   Attack: 6

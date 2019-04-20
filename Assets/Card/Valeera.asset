@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
   m_Name: Valeera
   m_EditorClassIdentifier: 
-  Description: 
+  CardName: Valeera
+  Description: 'Run away. Hide in your precious keeps, behind your walls and your
+    bodyguards. '
   CardImage: {fileID: 21300000, guid: f129a2d739d149547b5384fdedd7852b, type: 3}
   Health: 1
   Attack: 3
