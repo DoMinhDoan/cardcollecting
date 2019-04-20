@@ -12,6 +12,30 @@ public class CardManager : MonoBehaviour
     public Text AttackText;
     public Image CardGraphicImage;
     public GameObject CardPreview;
+    
+    [SerializeField]
+    private int healthValue = 0;
+    public int HealthValue
+    {
+        get { return healthValue; }
+
+        set
+        {
+            healthValue = value;
+        }
+    }
+
+    [SerializeField]
+    private int attackValue = 0;
+    public int AttackValue
+    {
+        get { return attackValue; }
+
+        set
+        {
+            attackValue = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +59,10 @@ public class CardManager : MonoBehaviour
             AttackText.text = cardAsset.Attack.ToString();
             CardGraphicImage.sprite = cardAsset.CardImage;
 
-            if(CardPreview != null)
+            HealthValue = cardAsset.Health;
+            AttackValue = cardAsset.Attack;
+
+            if (CardPreview != null)
             {
                 CardPreview.GetComponent<CardManager>().UpdateCardInformantion(cardAsset);
             }
@@ -43,10 +70,39 @@ public class CardManager : MonoBehaviour
         
     }
 
+    public void UpdateHeathCardInformantion(int health)
+    {
+        HealthValue = health;
+        if (CardPreview != null)
+        {
+            CardPreview.GetComponent<CardManager>().UpdateHeathCardInformantion(health);
+        }
+
+    }
+
     void OnMouseDown()
     {
         Debug.Log("OnMouseDown");
-        GlobalSettings.Instance.GameLogicManager.GetComponent<GameLogicManager>().AddCardToPlayer(this.gameObject);
-        GlobalSettings.Instance.GameLogicManager.GetComponent<GameLogicManager>().UpdatePlayerCardPostion();
+
+        GameLogicManager gameLogic = GlobalSettings.Instance.GameLogicManager.GetComponent<GameLogicManager>();
+
+        if(gameLogic.CurrentState == GameState.DISTRIBUTION_CARD)
+        {
+            gameLogic.AddCardToPlayer(this.gameObject);
+            gameLogic.UpdatePlayerCardPostion();
+        }
+        else if (gameLogic.CurrentState == GameState.BATTLE)
+        {
+            if(!gameLogic.IsCardBattle(this.gameObject) && !gameLogic.IsFighting())
+            {
+                gameLogic.MovePlayerCardToBattlePoint(this.gameObject);
+                gameLogic.UpdatePlayerCardPostion();
+            }
+        }
+    }
+
+    public int HealthValueAfterBattle(int amount)
+    {
+        return healthValue - amount;
     }
 }

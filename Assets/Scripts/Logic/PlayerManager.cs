@@ -11,10 +11,25 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> cardsInHand = new List<GameObject>();
 
+    [SerializeField]
+    private GameObject cardInBattle = null;
+
+    [SerializeField]
+    private int currentScore = 0;
+    public int CurrentScore
+    {
+        get { return currentScore; }
+
+        set
+        {
+            currentScore = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-
+        CurrentScore = GlobalSettings.Instance.DefaultPlayerScore;
     }
 
     // Update is called once per frame
@@ -26,6 +41,11 @@ public class PlayerManager : MonoBehaviour
     public void AddCard(GameObject card)
     {
         cardsInHand.Add(card);
+    }
+
+    void RemoveCard(GameObject card)
+    {
+        cardsInHand.Remove(card);
     }
 
     public int NumberCard()
@@ -58,5 +78,60 @@ public class PlayerManager : MonoBehaviour
                 cardsInHand[i].transform.localRotation = Quaternion.Euler(new Vector3(0f, -179f, 0f));
             }
         }
+    }
+
+    public void AddCardToBattle(GameObject card, Transform tranform)
+    {
+        cardInBattle = card;
+        cardInBattle.transform.localPosition = tranform.localPosition;
+
+        RemoveCard(card);
+    }
+
+    public void AddAICardToBattle(Transform tranform)
+    {
+        int aiCardRandrom = Random.Range(0, cardsInHand.Count);
+        GameObject card = cardsInHand[aiCardRandrom];
+
+        cardInBattle = card;
+        cardInBattle.transform.localPosition = tranform.localPosition;
+
+        RemoveCard(card);
+    }
+
+    public void EnableCardBattle()
+    {
+        cardInBattle.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+    }
+
+    public bool IsCardBattle(GameObject card)
+    {
+        return cardInBattle == card;
+    }
+
+    public bool HasCardBattle()
+    {
+        return cardInBattle != null;
+    }
+
+    public int AttackBattleValue()
+    {
+        return cardInBattle.GetComponent<CardManager>().AttackValue;
+    }
+
+    public int HealthBattleValue()
+    {
+        return cardInBattle.GetComponent<CardManager>().HealthValue;
+    }
+
+    public void DestroyBattleCard()
+    {
+        Destroy(cardInBattle);
+        cardInBattle = null;
+    }
+
+    public void AddScore(int amount)
+    {
+        CurrentScore += amount;
     }
 }
