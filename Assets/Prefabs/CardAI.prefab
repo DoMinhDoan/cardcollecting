@@ -808,9 +808,8 @@ GameObject:
   - component: {fileID: 6461638865894361859}
   - component: {fileID: 215545888}
   - component: {fileID: 215545889}
-  - component: {fileID: 4446496249830475250}
   m_Layer: 0
-  m_Name: Card
+  m_Name: CardAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,23 +861,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9989812, y: 2.997885, z: 0.01}
   m_Center: {x: 0.003952384, y: 0.00000011920929, z: 0}
---- !u!114 &4446496249830475250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461638865894361858}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b462d9b43b0064aaa976b014230953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnThisOffWhenPreviewing: {fileID: 6461638865953572107}
-  TargetPosition: {x: 0, y: 2.5, z: 0}
-  TargetScale: 2
-  previewGameObject: {fileID: 4238238167971126771}
-  ActivateInAwake: 1
 --- !u!1 &6461638865953572107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,12 +1533,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c441aa3810c225443a1c6d6ecbd049b4, type: 3}
---- !u!1 &4238238167971126771 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6461638865894361858, guid: c441aa3810c225443a1c6d6ecbd049b4,
-    type: 3}
-  m_PrefabInstance: {fileID: 7168997750851639025}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4238238167971126770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6461638865894361859, guid: c441aa3810c225443a1c6d6ecbd049b4,
