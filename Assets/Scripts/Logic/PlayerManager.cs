@@ -134,4 +134,9 @@ public class PlayerManager : MonoBehaviour
     {
         CurrentScore += amount;
     }
+
+    public void UpdateBattleHeathCardInformation(int health)
+    {
+        cardInBattle.GetComponent<CardManager>().UpdateHeathCardInformation(health);
+    }
 }

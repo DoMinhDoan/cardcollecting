@@ -49,7 +49,7 @@ public class CardManager : MonoBehaviour
         
     }
 
-    public void UpdateCardInformantion(CardAsset cardAsset)
+    public void UpdateCardInformation(CardAsset cardAsset)
     {
         if(cardAsset != null)
         {
@@ -64,26 +64,26 @@ public class CardManager : MonoBehaviour
 
             if (CardPreview != null)
             {
-                CardPreview.GetComponent<CardManager>().UpdateCardInformantion(cardAsset);
+                CardPreview.GetComponent<CardManager>().UpdateCardInformation(cardAsset);
             }
         }
         
     }
 
-    public void UpdateHeathCardInformantion(int health)
+    public void UpdateHeathCardInformation(int health)
     {
         HealthValue = health;
+        HealthText.text = health.ToString();
+
         if (CardPreview != null)
         {
-            CardPreview.GetComponent<CardManager>().UpdateHeathCardInformantion(health);
+            CardPreview.GetComponent<CardManager>().UpdateHeathCardInformation(health);
         }
 
     }
 
     void OnMouseDown()
     {
-        Debug.Log("OnMouseDown");
-
         GameLogicManager gameLogic = GlobalSettings.Instance.GameLogicManager.GetComponent<GameLogicManager>();
 
         if(gameLogic.CurrentState == GameState.DISTRIBUTION_CARD)
@@ -93,7 +93,7 @@ public class CardManager : MonoBehaviour
         }
         else if (gameLogic.CurrentState == GameState.BATTLE)
         {
-            if(!gameLogic.IsCardBattle(this.gameObject) && !gameLogic.IsFighting())
+            if(!gameLogic.IsCardBattle(this.gameObject) && !gameLogic.IsFighting() && !gameLogic.IsEmptyBattle())
             {
                 gameLogic.MovePlayerCardToBattlePoint(this.gameObject);
                 gameLogic.UpdatePlayerCardPostion();

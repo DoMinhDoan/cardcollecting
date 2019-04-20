@@ -59,7 +59,7 @@ public class GameLogicManager : MonoBehaviour
                 cardsPositionXOffset += 1.5f;
             }
             GameObject card = GameObject.Instantiate(CreatureCardPrefab, new Vector3(cardsPositionX, 0f, 0f), Quaternion.Euler(new Vector3(0f, 0f, 0f))) as GameObject;
-            card.GetComponent<CardManager>().UpdateCardInformantion(allCardsAsset[i]);
+            card.GetComponent<CardManager>().UpdateCardInformation(allCardsAsset[i]);
             card.GetComponent<HoverPreview>().ThisPreviewEnabled = false;
 
             allCardsObject.Add(card);
@@ -102,11 +102,17 @@ public class GameLogicManager : MonoBehaviour
         if(PlayerManager.GetComponent<PlayerManager>().NumberCard() == GlobalSettings.Instance.MaxPlayerCard)
         {
             TransferRestCardToAI();
-
-            MoveAICardToBattlePoint();  //AI first
-            UpdateAiCardPostion();
+            StartCoroutine(ProcessAIFirst());
         }
     }
+
+    IEnumerator ProcessAIFirst()
+    {
+        yield return new WaitForSeconds(2.5f);
+        MoveAICardToBattlePoint();  //AI first
+        UpdateAiCardPostion();
+    }
+
     void TransferRestCardToAI()
     {
         foreach(var card in allCardsObject)
@@ -150,7 +156,6 @@ public class GameLogicManager : MonoBehaviour
         {
             currentState = GameState.FIGHTING;
             StartCoroutine(UpdateFighting());
-            //UpdateFighting();
         }
     }
 
@@ -167,6 +172,7 @@ public class GameLogicManager : MonoBehaviour
         {
             AIManager.GetComponent<PlayerManager>().DestroyBattleCard();
             PlayerManager.GetComponent<PlayerManager>().AddScore(1);
+            PlayerManager.GetComponent<PlayerManager>().UpdateBattleHeathCardInformation(playerHealthValue);
 
             currentState = GameState.BATTLE;
         }
@@ -174,6 +180,7 @@ public class GameLogicManager : MonoBehaviour
         {
             PlayerManager.GetComponent<PlayerManager>().DestroyBattleCard();
             AIManager.GetComponent<PlayerManager>().AddScore(1);
+            AIManager.GetComponent<PlayerManager>().UpdateBattleHeathCardInformation(aiHealthValue);
 
             currentState = GameState.BATTLE;
         }
@@ -181,6 +188,8 @@ public class GameLogicManager : MonoBehaviour
         {
             PlayerManager.GetComponent<PlayerManager>().DestroyBattleCard();
             AIManager.GetComponent<PlayerManager>().DestroyBattleCard();
+
+            currentState = GameState.BATTLE;
         }
     }
 
@@ -192,5 +201,10 @@ public class GameLogicManager : MonoBehaviour
     public bool IsFighting()
     {
         return PlayerManager.GetComponent<PlayerManager>().HasCardBattle() && AIManager.GetComponent<PlayerManager>().HasCardBattle();
+    }
+
+    public bool IsEmptyBattle()
+    {
+        return !PlayerManager.GetComponent<PlayerManager>().HasCardBattle() && !AIManager.GetComponent<PlayerManager>().HasCardBattle();
     }
 }
