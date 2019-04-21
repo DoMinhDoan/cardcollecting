@@ -84,7 +84,7 @@ public class GameLogicManager : MonoBehaviour
 
     void UpdateListCardPostion()
     {
-        float cardsPositionXOffset = 0;
+        /*float cardsPositionXOffset = 0;
         for (int i = 0; i < allCardsObject.Count; i++)
         {
             float cardsPositionX = cardsPositionXOffset;
@@ -98,7 +98,7 @@ public class GameLogicManager : MonoBehaviour
             }
 
             allCardsObject[i].transform.localPosition = new Vector3(cardsPositionX, 0f, 0f);
-        }
+        }*/
     }
 
     public void AddCardToPlayer(GameObject card)
@@ -161,6 +161,10 @@ public class GameLogicManager : MonoBehaviour
 
     public void MoveAICardToBattlePoint()
     {
+        if(ShouldEndGame())
+        {
+            return;
+        }
         AIManager.GetComponent<PlayerManager>().AddAICardToBattle(AIBattlePoint);
 
         if (IsFighting() && currentState != GameState.FIGHTING)
@@ -219,7 +223,7 @@ public class GameLogicManager : MonoBehaviour
             StartCoroutine(UpdateFighting());
         }
 
-        if(AIManager.GetComponent<PlayerManager>().NumberCard() == 0 || PlayerManager.GetComponent<PlayerManager>().NumberCard() == 0)
+        if(ShouldEndGame())
         {
             currentState = GameState.END_GAME;
             DeactiveGameField();
@@ -265,5 +269,10 @@ public class GameLogicManager : MonoBehaviour
     public bool IsEmptyBattle()
     {
         return !PlayerManager.GetComponent<PlayerManager>().HasCardBattle() && !AIManager.GetComponent<PlayerManager>().HasCardBattle();
+    }
+
+    public bool ShouldEndGame()
+    {
+        return (PlayerManager.GetComponent<PlayerManager>().NumberCard() == 0 || AIManager.GetComponent<PlayerManager>().NumberCard() == 0);
     }
 }
