@@ -28,8 +28,9 @@ points. Once there are zero (0) life points, the card disappears from the playin
 ## 3rd Asset
 
 * DOTween (HOTween v2)
+* Card Image and Description collected from [hearthstone](https://hearthstone.gamepedia.com/Full_art)
 
-## Features:
+## Features
 
 1. The cards should be made possible with the aid of scriptable objects
 1. The mixing, distribution, and placement of the cards is to be done with animation or via
@@ -44,3 +45,48 @@ remains the same.
 1. The game should have an intro screen and should be able to subsequently load the
 game scene.
 1. The app should work on multiple aspect ratios
+
+## Setup and Run
+
+* Working with Unity 2018.3.0f2. Haven't tested yet with another Unity version.
+* Run Scene\IntroScene to enjoy the game.
+
+## Assumptions
+
+* _The user has higher health value will win and the loss card will be destroyed from play field._
+* If both cards return their health by less or equal 0 -> _no point for both player._
+* _The win card still keep on play field for next battle with health reducing by competitor attack value._
+
+## TODO
+* Intergrate __Command Pattern__ to control command list better.
+* Save game just support _score_ by now, but when save game file expand, the saving should be perform on __thread__.
+
+## Design Screenshot
+
+1. __Intro Scene__
+
+![](docgen/IntroScene.JPG "Intro scene")
+
+* It's display in 2 second, then switch to game scene.
+
+2. __Game Scene__
+
+
+* Player pick 5 cards to play.
+* The rest will be transfered to AI.
+
+![](docgen/PlayField.JPG "The Playboard Design")
+
+* Click to choose the card to battle.
+
+
+![](docgen/Fighting.JPG "The Battle Fighting Design")
+
+* The user has higher health value will win and the loss card will be destroyed from play field.
+* The winner receive 1 score.
+
+![](docgen/GameOver.JPG "The Game Over Design")
+
+* Display _pLayer_ status. (_Win/Loss/Draw_)
+* Click __New Game__ to start new battle
+
