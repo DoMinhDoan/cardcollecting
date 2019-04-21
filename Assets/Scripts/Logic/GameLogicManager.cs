@@ -84,7 +84,7 @@ public class GameLogicManager : MonoBehaviour
 
     void UpdateListCardPostion()
     {
-        /*float cardsPositionXOffset = 0;
+        float cardsPositionXOffset = 0;
         for (int i = 0; i < allCardsObject.Count; i++)
         {
             float cardsPositionX = cardsPositionXOffset;
@@ -98,7 +98,7 @@ public class GameLogicManager : MonoBehaviour
             }
 
             allCardsObject[i].transform.localPosition = new Vector3(cardsPositionX, 0f, 0f);
-        }*/
+        }
     }
 
     public void AddCardToPlayer(GameObject card)
@@ -108,7 +108,7 @@ public class GameLogicManager : MonoBehaviour
         PlayerManager.GetComponent<PlayerManager>().AddCard(card);
 
         allCardsObject.Remove(card);
-        UpdateListCardPostion();
+        //UpdateListCardPostion();
 
         if(PlayerManager.GetComponent<PlayerManager>().NumberCard() == GlobalSettings.Instance.MaxPlayerCard)
         {
@@ -132,7 +132,7 @@ public class GameLogicManager : MonoBehaviour
             AIManager.GetComponent<PlayerManager>().AddCard(card);
         }
         allCardsObject.Clear();
-        UpdateListCardPostion();
+        //UpdateListCardPostion();
         UpdateAiCardPostion();
 
         currentState = GameState.BATTLE;
