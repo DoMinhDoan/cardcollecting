@@ -26,6 +26,9 @@ public class GameLogicManager : MonoBehaviour
     public GameObject GameOver;
     public Text BattleResult;
 
+    public GameObject PlayerInfo;
+    public Text GameOverScoreText;
+
     [SerializeField]
     private List<GameObject> allCardsObject = new List<GameObject>();
 
@@ -65,7 +68,7 @@ public class GameLogicManager : MonoBehaviour
             {
                 cardsPositionXOffset += 1.2f;
             }
-            GameObject card = GameObject.Instantiate(CreatureCardPrefab, new Vector3(cardsPositionX, 0f, 0f), Quaternion.Euler(new Vector3(0f, 0f, 0f))) as GameObject;
+            GameObject card = GameObject.Instantiate(CreatureCardPrefab, new Vector3(cardsPositionX, 0f, 0f), Quaternion.Euler(new Vector3(0f, -179f, 0f))) as GameObject;
             card.GetComponent<CardManager>().UpdateCardInformation(allCardsAsset[i]);
             card.GetComponent<HoverPreview>().ThisPreviewEnabled = false;
 
@@ -101,6 +104,7 @@ public class GameLogicManager : MonoBehaviour
     public void AddCardToPlayer(GameObject card)
     {
         card.GetComponent<HoverPreview>().ThisPreviewEnabled = true;
+        card.transform.localRotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
         PlayerManager.GetComponent<PlayerManager>().AddCard(card);
 
         allCardsObject.Remove(card);
@@ -217,6 +221,8 @@ public class GameLogicManager : MonoBehaviour
 
         if(AIManager.GetComponent<PlayerManager>().NumberCard() == 0 || PlayerManager.GetComponent<PlayerManager>().NumberCard() == 0)
         {
+            currentState = GameState.END_GAME;
+            DeactiveGameField();
             GameOver.SetActive(true);
             LocalSaveManager.Instance.UpdateSaveGame(LocalSaveManager.Instance.GetGameSave().score + PlayerManager.GetComponent<PlayerManager>().CurrentScore);
             LocalSaveManager.Instance.SaveGame();
@@ -235,6 +241,15 @@ public class GameLogicManager : MonoBehaviour
             }
             
         }
+    }
+
+    void DeactiveGameField()
+    {
+        PlayerInfo.SetActive(false);
+        GameOverScoreText.text = (LocalSaveManager.Instance.GetGameSave().score + PlayerManager.GetComponent<PlayerManager>().CurrentScore).ToString();
+
+        PlayerManager.GetComponent<PlayerManager>().DeactiveCardAction();
+        AIManager.GetComponent<PlayerManager>().DeactiveCardAction();
     }
 
     public bool IsCardBattle(GameObject card)

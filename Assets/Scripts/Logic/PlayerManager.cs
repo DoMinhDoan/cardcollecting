@@ -143,4 +143,14 @@ public class PlayerManager : MonoBehaviour
     {
         cardInBattle.GetComponent<CardManager>().UpdateHeathCardInformation(health);
     }
+
+    public void DeactiveCardAction()
+    {
+        foreach(var card in cardsInHand)
+        {
+            card.GetComponent<HoverPreview>().ThisPreviewEnabled = false;
+            Destroy(card);
+            DestroyBattleCard();
+        }
+    }
 }
